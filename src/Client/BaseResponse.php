@@ -9,25 +9,30 @@ namespace Infiny\Client;
 
 
 use Doctrine\Common\Inflector\Inflector;
-use Infiny\Contracts\ApiResponse;
 use Infiny\Contracts\BaseResponse as BaseResponseInterface;
 
 class BaseResponse implements BaseResponseInterface
 {
-    public function __construct(ApiResponse $response)
+    public function __construct($data)
     {
-        foreach($response->getBody() as $key=>$value) {
+        foreach($data as $key=>$value) {
 
             $studly = Inflector::classify($key);
             $studlySingular = Inflector::singularize($studly);
 
-            if(method_exists($this, 'add'.$studlySingular)) {
-                $reflectionClass = new \ReflectionClass(__CLASS__);
-                $parameters = $reflectionClass->getMethod('add'.$studlySingular)->getParameters();
-                $parameterClass = $parameters[0]->getType();
-                $parameter = new $parameterClass($value);
-
-                $this->{'add'.$studlySingular}($parameter);
+            if (method_exists($this, 'add'.$studlySingular)) {
+                if (is_array($value)) {
+                    $reflectionMethod = new \ReflectionMethod($this, 'add' . $studlySingular);
+                    $parameters = $reflectionMethod->getParameters();
+                    if(count($parameters)) {
+                        $parameterClass = $parameters[0]->getType();
+                        $class = $parameterClass->getName();
+                        foreach($value as $subKey=>$subValue) {
+                            $parameter = new $class($value);
+                            $this->{'add' . $studlySingular}($parameter);
+                        }
+                    }
+                }
             } elseif(method_exists($this, 'add'.$studly)) {
                 $reflectionClass = new \ReflectionClass(__CLASS__);
                 $parameters = $reflectionClass->getMethod('add'.$studly)->getParameters();

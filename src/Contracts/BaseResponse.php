@@ -10,5 +10,5 @@ namespace Infiny\Contracts;
 
 interface BaseResponse
 {
-    public function __construct(ApiResponse $response);
+    public function __construct($data);
 }

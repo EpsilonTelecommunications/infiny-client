@@ -145,11 +145,7 @@ class Client implements HttpClient
 
     protected function parseResponse(ResponseInterface $response, $responseModel)
     {
-        $apiResponse = new ApiResponse();
-        $apiResponse->setBody(json_decode((string) $response->getBody()))
-            ->setStatusCode($response->getStatusCode());
-
-        return new $responseModel($apiResponse);
+        return new $responseModel(json_decode((string) $response->getBody()));
     }
 
     public function createAccessToken()
