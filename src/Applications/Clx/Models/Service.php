@@ -8,7 +8,9 @@
 namespace Infiny\Applications\Clx\Models;
 
 
-class Service
+use Infiny\Client\BaseResponse;
+
+class Service extends BaseResponse
 {
     private $name;
 
