@@ -7,6 +7,7 @@
 
 namespace Infiny;
 
+use Infiny\Applications\Clx\Models\Service;
 use Infiny\Client\Client as InfinyClient;
 
 
@@ -21,9 +22,12 @@ class CloudLx
             ->setClientSecret($clientSecret);
     }
 
+    /**
+     * @return Service[]
+     */
     public function getServices()
     {
-        return $this->client->get('services');
+        return $this->client->get('services')->getServiecs();
     }
 
     public function getService($serviceId)
