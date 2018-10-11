@@ -13,8 +13,8 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "Infiny": "src/"
+        "psr-4": {
+            "Infiny\\": "src/"
         }
     },
     "minimum-stability": "dev"
