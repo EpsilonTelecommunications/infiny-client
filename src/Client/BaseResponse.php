@@ -27,8 +27,8 @@ class BaseResponse implements BaseResponseInterface
                         $parameterClass = $parameters[0]->getType();
                         $class = $parameterClass->getName();
                         foreach($value as $subKey=>$subValue) {
-                            $parameter = new $class($value);
-                            $this->{'add' . $studlySingular}($subValue);
+                            $parameterClass = new $class($subValue);
+                            $this->{'add' . $studlySingular}($parameterClass);
                         }
                     }
                 }
