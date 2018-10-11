@@ -8,6 +8,7 @@
 namespace Infiny\Client;
 
 use GuzzleHttp\ClientInterface;
+use Infiny\Authentication\AccessTokenRequest;
 use Infiny\Contracts\ApiResponse as ApiResponseInterface;
 use Infiny\Contracts\HttpClient;
 use Infiny\Contracts\AccessToken as AccessTokenInterface;
@@ -34,8 +35,6 @@ class Client implements HttpClient
     {
         if ($accessToken) {
             $this->setAccessToken($accessToken);
-        } else {
-            $this->setAccessToken($this->createAccessToken());
         }
 
         if ($client) {
@@ -153,12 +152,18 @@ class Client implements HttpClient
     public function createAccessToken()
     {
         if($this->getClientId() && $this->getClientSecret()) {
+
+            $accessTokenRequest = new AccessTokenRequest();
+            $accessTokenRequest->setClientSecret($this->getClientSecret())
+                ->setClientId($this->getClientId());
+
             return $this->parseResponse(
                 $this->getClient()->request('post', $this->getEndpoint('oauth2/access-token'), [
                     'headers' => [
                         'Content-Type' => 'application/json',
                         'Accept' => $this->getAcceptHeader()
-                    ]
+                    ],
+                    'data' => json_encode($accessTokenRequest)
                 ]),
                 $this->resourceMap['oauth2/access-token']
             );
@@ -208,6 +213,9 @@ class Client implements HttpClient
      */
     public function getAccessToken() : AccessTokenInterface
     {
+        if (!$this->accessToken) {
+            $this->accessToken = $this->createAccessToken();
+        }
         return $this->accessToken;
     }
 
