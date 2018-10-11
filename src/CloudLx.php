@@ -27,7 +27,7 @@ class CloudLx
      */
     public function getServices()
     {
-        return $this->client->get('services')->getServiecs();
+        return $this->client->get('services')->getServices();
     }
 
     public function getService($serviceId)
