@@ -17,7 +17,7 @@ class ApiResponse implements ApiResponseInterface
     /**
      * @return mixed
      */
-    public function getBody(): \Iterator
+    public function getBody(): \stdClass
     {
         return $this->body;
     }
