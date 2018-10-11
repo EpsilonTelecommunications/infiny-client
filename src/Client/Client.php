@@ -44,7 +44,7 @@ class Client implements HttpClient
 
     public $resourceMap = [
         'oauth2/access-token' => AccessToken::class,
-        'services/{1}' => Service::class,
+        'services/{1}/service' => Service::class,
         'services' => Services::class
     ];
 
@@ -122,7 +122,7 @@ class Client implements HttpClient
      */
     protected function getEndpoint($resource)
     {
-        return sprintf('%s/%s', rtrim(self::API_URL, '/'), $resource);
+        return sprintf('%s/%s', rtrim(self::API_URL, '/'), str_replace("{", "", str_replace("}", "", $resource)));
     }
 
     /**
@@ -174,16 +174,16 @@ class Client implements HttpClient
 
     private function getModelFromResourceMap($resource)
     {
-        if (isset($this->resourceMap[$resource])) {
-            return $this->resourceMap[$resource];
-        } elseif (preg_match("/\{.+\}/", $resource)) {
-            $resource = preg_replace_callback('/\{\.+\}/',function($matches){
+        if (preg_match("/\{.+\}/", $resource)) {
+            $resource = preg_replace_callback('/\{.*\}/', function($matches) {
                 static $i=1;
-                return $i++;
+                return sprintf("{%d}", $i++);
             }, $resource);
-            var_dump($resource);
-            die();
         }
+        if(isset($this->resourceMap[$resource])) {
+            return $this->resourceMap[$resource];
+        }
+        return null;
     }
 
     /**
