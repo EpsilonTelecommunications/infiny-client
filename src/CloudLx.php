@@ -26,4 +26,8 @@ class CloudLx
         return $this->client->get('services');
     }
 
+    public function getService($serviceId)
+    {
+        return $this->client->get(sprintf('services/{%d}', intval($serviceId)));
+    }
 }

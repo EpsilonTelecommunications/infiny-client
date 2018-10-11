@@ -9,8 +9,8 @@ namespace Infiny\Client;
 
 use GuzzleHttp\ClientInterface;
 use Infiny\Applications\Clx\Models\Services;
+use Infiny\Applications\Clx\Models\Service;
 use Infiny\Authentication\AccessTokenRequest;
-use Infiny\Contracts\ApiResponse as ApiResponseInterface;
 use Infiny\Contracts\HttpClient;
 use Infiny\Contracts\AccessToken as AccessTokenInterface;
 use Infiny\Contracts\BaseResponse as BaseResponseInterface;
@@ -29,11 +29,6 @@ class Client implements HttpClient
     const API_VERSION = 'v1';
     const API_SUBTYPE = 'cloudlx';
 
-    public $resourceMap = [
-        'oauth2/access-token' => AccessToken::class,
-        'services' => Services::class
-    ];
-
     public function __construct(AccessTokenInterface $accessToken = null, ClientInterface $client = null)
     {
         if ($accessToken) {
@@ -47,6 +42,12 @@ class Client implements HttpClient
         }
     }
 
+    public $resourceMap = [
+        'oauth2/access-token' => AccessToken::class,
+        'services/{1}' => Service::class,
+        'services' => Services::class
+    ];
+
     /**
      * @param $resource
      * @param array $requestParams
@@ -59,7 +60,7 @@ class Client implements HttpClient
                 'headers' => $this->getHeaders(),
                 'query' => $requestParams
             ]),
-            $this->resourceMap[$resource]
+            $this->getModelFromResourceMap($resource)
         );
     }
 
@@ -77,7 +78,7 @@ class Client implements HttpClient
                 'query' => $requestParams,
                 'body' => $data
             ]),
-            $this->resourceMap[$resource]
+            $this->getModelFromResourceMap($resource)
         );
     }
 
@@ -95,7 +96,7 @@ class Client implements HttpClient
                 'query' => $requestParams,
                 'body' => $data
             ]),
-            $this->resourceMap[$resource]
+            $this->getModelFromResourceMap($resource)
         );
     }
 
@@ -111,7 +112,7 @@ class Client implements HttpClient
                 'headers' => $this->getHeaders(),
                 'query' => $requestParams
             ]),
-            $this->resourceMap[$resource]
+            $this->getModelFromResourceMap($resource)
         );
     }
 
@@ -164,10 +165,24 @@ class Client implements HttpClient
                     ],
                     'body' => json_encode($accessTokenRequest)
                 ]),
-                $this->resourceMap['oauth2/access-token']
+                $this->getModelFromResourceMap('oauth2/access-token')
             );
         } else {
             throw new MissingCredentialsException();
+        }
+    }
+
+    private function getModelFromResourceMap($resource)
+    {
+        if (isset($this->resourceMap[$resource])) {
+            return $this->resourceMap[$resource];
+        } elseif (preg_match("/\{.+\}/", $resource)) {
+            $resource = preg_replace_callback('/\{\.+\}/',function($matches){
+                static $i=1;
+                return $i++;
+            }, $resource);
+            var_dump($resource);
+            die();
         }
     }
 
