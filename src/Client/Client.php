@@ -8,6 +8,7 @@
 namespace Infiny\Client;
 
 use GuzzleHttp\ClientInterface;
+use Infiny\Applications\Clx\Models\Services;
 use Infiny\Authentication\AccessTokenRequest;
 use Infiny\Contracts\ApiResponse as ApiResponseInterface;
 use Infiny\Contracts\HttpClient;
@@ -28,7 +29,8 @@ class Client implements HttpClient
     const API_SUBTYPE = 'cloudlx';
 
     public $resourceMap = [
-        'oauth2/access-token' => AccessToken::class
+        'oauth2/access-token' => AccessToken::class,
+        'services' => Services::class
     ];
 
     public function __construct(AccessTokenInterface $accessToken = null, ClientInterface $client = null)
