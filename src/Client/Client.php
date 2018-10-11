@@ -163,7 +163,7 @@ class Client implements HttpClient
                         'Content-Type' => 'application/json',
                         'Accept' => $this->getAcceptHeader()
                     ],
-                    'data' => json_encode($accessTokenRequest)
+                    'body' => json_encode($accessTokenRequest)
                 ]),
                 $this->resourceMap['oauth2/access-token']
             );
