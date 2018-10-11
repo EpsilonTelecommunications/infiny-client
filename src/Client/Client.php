@@ -10,7 +10,9 @@ namespace Infiny\Client;
 use GuzzleHttp\ClientInterface;
 use Infiny\Contracts\ApiResponse as ApiResponseInterface;
 use Infiny\Contracts\HttpClient;
-use Infiny\Contracts\AccessToken;
+use Infiny\Contracts\AccessToken as AccessTokenInterface;
+use Infiny\Authentication\AccessToken;
+use Infiny\Exceptions\MissingCredentialsException;
 use Psr\Http\Message\ResponseInterface;
 
 class Client implements HttpClient
@@ -24,9 +26,18 @@ class Client implements HttpClient
     const API_VERSION = 'v1';
     const API_SUBTYPE = 'cloudlx';
 
-    public function __construct(AccessToken $accessToken, ClientInterface $client = null)
+    public $resourceMap = [
+        'oauth2/access-token' => AccessToken::class
+    ];
+
+    public function __construct(AccessTokenInterface $accessToken = null, ClientInterface $client = null)
     {
-        $this->setAccessToken($accessToken);
+        if ($accessToken) {
+            $this->setAccessToken($accessToken);
+        } else {
+            $this->setAccessToken($this->createAccessToken());
+        }
+
         if ($client) {
             $this->setClient($client);
         } else {
@@ -45,7 +56,8 @@ class Client implements HttpClient
             $this->getClient()->request('get', $this->getEndpoint($resource), [
                 'headers' => $this->getHeaders(),
                 'query' => $requestParams
-            ])
+            ]),
+            $this->resourceMap[$resource]
         );
     }
 
@@ -62,7 +74,8 @@ class Client implements HttpClient
                 'headers' => $this->getHeaders(),
                 'query' => $requestParams,
                 'body' => $data
-            ])
+            ]),
+            $this->resourceMap[$resource]
         );
     }
 
@@ -79,7 +92,8 @@ class Client implements HttpClient
                 'headers' => $this->getHeaders(),
                 'query' => $requestParams,
                 'body' => $data
-            ])
+            ]),
+            $this->resourceMap[$resource]
         );
     }
 
@@ -94,7 +108,8 @@ class Client implements HttpClient
             $this->getClient()->request('delete', $this->getEndpoint($resource), [
                 'headers' => $this->getHeaders(),
                 'query' => $requestParams
-            ])
+            ]),
+            $this->resourceMap[$resource]
         );
     }
 
@@ -126,17 +141,34 @@ class Client implements HttpClient
         ];
     }
 
-    protected function parseResponse(ResponseInterface $response)
+    protected function parseResponse(ResponseInterface $response, $responseModel)
     {
         $apiResponse = new ApiResponse();
         $apiResponse->setBody(json_decode((string) $response->getBody()))
             ->setStatusCode($response->getStatusCode());
 
-        return $apiResponse;
+        return new $responseModel($apiResponse);
+    }
+
+    public function createAccessToken()
+    {
+        if($this->getClientId() && $this->getClientSecret()) {
+            return $this->parseResponse(
+                $this->getClient()->request('post', $this->getEndpoint('oauth2/access-token'), [
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Accept' => $this->getAcceptHeader()
+                    ]
+                ]),
+                $this->resourceMap['oauth2/access-token']
+            );
+        } else {
+            throw new MissingCredentialsException();
+        }
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getClientId()
     {
@@ -144,7 +176,7 @@ class Client implements HttpClient
     }
 
     /**
-     * @param mixed $clientId
+     * @param string $clientId
      * @return Client
      */
     public function setClientId($clientId)
@@ -154,7 +186,7 @@ class Client implements HttpClient
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getClientSecret()
     {
@@ -162,7 +194,7 @@ class Client implements HttpClient
     }
 
     /**
-     * @param mixed $clientSecret
+     * @param string $clientSecret
      * @return Client
      */
     public function setClientSecret($clientSecret)
@@ -174,16 +206,16 @@ class Client implements HttpClient
     /**
      * @return mixed
      */
-    public function getAccessToken() : AccessToken
+    public function getAccessToken() : AccessTokenInterface
     {
         return $this->accessToken;
     }
 
     /**
-     * @param mixed $accessToken
+     * @param AccessTokenInterface $accessToken
      * @return Client
      */
-    public function setAccessToken($accessToken)
+    public function setAccessToken(AccessTokenInterface $accessToken)
     {
         $this->accessToken = $accessToken;
         return $this;

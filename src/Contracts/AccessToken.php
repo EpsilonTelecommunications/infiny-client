@@ -8,7 +8,7 @@
 namespace Infiny\Contracts;
 
 
-interface AccessToken
+interface AccessToken extends BaseResponse
 {
     public function getAccessToken() : String;
 }

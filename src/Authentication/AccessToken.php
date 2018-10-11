@@ -7,10 +7,11 @@
 
 namespace Infiny\Authentication;
 
+use Infiny\Client\BaseResponse;
 use Infiny\Contracts\AccessToken as AccessTokenInterface;
 
 
-class AccessToken implements AccessTokenInterface
+class AccessToken extends BaseResponse implements AccessTokenInterface
 {
     private $accessToken;
 

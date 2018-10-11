@@ -10,5 +10,5 @@ namespace Infiny\Contracts;
 
 interface ApiResponse
 {
-
+    public function getBody() : \Iterator;
 }
