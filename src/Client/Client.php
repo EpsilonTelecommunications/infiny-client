@@ -5,12 +5,12 @@
  * Time: 09:25
  */
 
-namespace Client;
+namespace Infiny\Client;
 
 use GuzzleHttp\ClientInterface;
-use Contracts\ApiResponse as ApiResponseInterface;
-use Contracts\HttpClient;
-use Contracts\AccessToken;
+use Infiny\Contracts\ApiResponse as ApiResponseInterface;
+use Infiny\Contracts\HttpClient;
+use Infiny\Contracts\AccessToken;
 use Psr\Http\Message\ResponseInterface;
 
 class Client implements HttpClient

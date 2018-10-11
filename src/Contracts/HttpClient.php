@@ -5,7 +5,7 @@
  * Time: 09:26
  */
 
-namespace Contracts;
+namespace Infiny\Contracts;
 
 
 interface HttpClient

@@ -5,9 +5,9 @@
  * Time: 09:24
  */
 
-namespace Authentication;
+namespace Infiny\Authentication;
 
-use Contracts\AccessToken as AccessTokenInterface;
+use Infiny\Contracts\AccessToken as AccessTokenInterface;
 
 
 class AccessToken implements AccessTokenInterface
