@@ -19,7 +19,6 @@ class BaseResponse implements BaseResponseInterface
 
             $studly = Inflector::classify($key);
             $studlySingular = Inflector::singularize($studly);
-
             if (method_exists($this, 'add'.$studlySingular)) {
                 if (is_array($value)) {
                     $reflectionMethod = new \ReflectionMethod($this, 'add' . $studlySingular);
@@ -29,7 +28,7 @@ class BaseResponse implements BaseResponseInterface
                         $class = $parameterClass->getName();
                         foreach($value as $subKey=>$subValue) {
                             $parameter = new $class($value);
-                            $this->{'add' . $studlySingular}($parameter);
+                            $this->{'add' . $studlySingular}($subValue);
                         }
                     }
                 }
