@@ -10,10 +10,10 @@ namespace Infiny\Contracts;
 
 interface HttpClient
 {
-    public function get($resource, $requestParams = []) : ApiResponse;
-    public function post($resource, $data = null, $requestParams = []) : ApiResponse;
-    public function put($resource, $data = null, $requestParams = []) : ApiResponse;
-    public function delete($resource, $requestParams = []) : ApiResponse;
+    public function get($resource, $requestParams = []) : BaseResponse;
+    public function post($resource, $data = null, $requestParams = []) : BaseResponse;
+    public function put($resource, $data = null, $requestParams = []) : BaseResponse;
+    public function delete($resource, $requestParams = []) : BaseResponse;
 
     public function getAccessToken() : AccessToken;
 }

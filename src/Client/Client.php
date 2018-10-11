@@ -13,6 +13,7 @@ use Infiny\Authentication\AccessTokenRequest;
 use Infiny\Contracts\ApiResponse as ApiResponseInterface;
 use Infiny\Contracts\HttpClient;
 use Infiny\Contracts\AccessToken as AccessTokenInterface;
+use Infiny\Contracts\BaseResponse as BaseResponseInterface;
 use Infiny\Authentication\AccessToken;
 use Infiny\Exceptions\MissingCredentialsException;
 use Psr\Http\Message\ResponseInterface;
@@ -49,9 +50,9 @@ class Client implements HttpClient
     /**
      * @param $resource
      * @param array $requestParams
-     * @return ApiResponseInterface
+     * @return BaseResponseInterface
      */
-    public function get($resource, $requestParams = []): ApiResponseInterface
+    public function get($resource, $requestParams = []): BaseResponseInterface
     {
         return $this->parseResponse(
             $this->getClient()->request('get', $this->getEndpoint($resource), [
@@ -66,9 +67,9 @@ class Client implements HttpClient
      * @param $resource
      * @param null $data
      * @param array $requestParams
-     * @return ApiResponseInterface
+     * @return BaseResponseInterface
      */
-    public function post($resource, $data = null, $requestParams = []): ApiResponseInterface
+    public function post($resource, $data = null, $requestParams = []): BaseResponseInterface
     {
         return $this->parseResponse(
             $this->getClient()->request('post', $this->getEndpoint($resource), [
@@ -84,9 +85,9 @@ class Client implements HttpClient
      * @param $resource
      * @param null $data
      * @param array $requestParams
-     * @return ApiResponseInterface
+     * @return BaseResponseInterface
      */
-    public function put($resource, $data = null, $requestParams = []): ApiResponseInterface
+    public function put($resource, $data = null, $requestParams = []): BaseResponseInterface
     {
         return $this->parseResponse(
             $this->getClient()->request('put', $this->getEndpoint($resource), [
@@ -101,9 +102,9 @@ class Client implements HttpClient
     /**
      * @param $resource
      * @param array $requestParams
-     * @return ApiResponseInterface
+     * @return BaseResponseInterface
      */
-    public function delete($resource, $requestParams = []): ApiResponseInterface
+    public function delete($resource, $requestParams = []): BaseResponseInterface
     {
         return $this->parseResponse(
             $this->getClient()->request('delete', $this->getEndpoint($resource), [
