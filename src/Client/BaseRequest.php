@@ -8,17 +8,15 @@
 namespace Infiny\Client;
 
 
-class BaseRequest implements \JsonSerializable
+abstract class BaseRequest implements \JsonSerializable
 {
     /**
      * @return mixed
      */
     public function jsonSerialize()
     {
-        $data = [];
-        foreach($this as $key=>$value) {
-            $data[$key] = $value;
-        }
-        return $data;
+        return $this->getRequestData();
     }
+
+    abstract function getRequestData();
 }

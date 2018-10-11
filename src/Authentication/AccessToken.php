@@ -18,7 +18,7 @@ class AccessToken extends BaseResponse implements AccessTokenInterface
     /**
      * @return string
      */
-    public function getAccessToken() : String
+    public function getAccessToken(): string
     {
         return $this->accessToken;
     }
@@ -27,7 +27,7 @@ class AccessToken extends BaseResponse implements AccessTokenInterface
      * @param mixed $accessToken
      * @return AccessToken
      */
-    public function setAccessToken($accessToken) : AccessToken
+    public function setAccessToken($accessToken): AccessToken
     {
         $this->accessToken = $accessToken;
         return $this;

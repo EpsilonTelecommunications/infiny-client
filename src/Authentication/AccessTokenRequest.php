@@ -27,7 +27,7 @@ class AccessTokenRequest extends BaseRequest
      * @param mixed $clientId
      * @return AccessTokenRequest
      */
-    public function setClientId($clientId)
+    public function setClientId($clientId): AccessTokenRequest
     {
         $this->clientId = $clientId;
         return $this;
@@ -45,7 +45,7 @@ class AccessTokenRequest extends BaseRequest
      * @param mixed $clientSecret
      * @return AccessTokenRequest
      */
-    public function setClientSecret($clientSecret)
+    public function setClientSecret($clientSecret): AccessTokenRequest
     {
         $this->clientSecret = $clientSecret;
         return $this;
@@ -67,5 +67,14 @@ class AccessTokenRequest extends BaseRequest
     {
         $this->grantType = $grantType;
         return $this;
+    }
+
+    public function getRequestData()
+    {
+        return [
+            'client_id' => $this->getClientId(),
+            'client_secret' => $this->getClientSecret(),
+            'grant_type' => $this->getGrantType()
+        ];
     }
 }

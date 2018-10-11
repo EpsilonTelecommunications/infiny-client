@@ -7,8 +7,9 @@
 
 namespace Infiny\Client;
 
+use \Infiny\Contracts\ApiResponse as ApiResponseInterface;
 
-class ApiResponse
+class ApiResponse implements ApiResponseInterface
 {
     private $body;
     private $statusCode;
