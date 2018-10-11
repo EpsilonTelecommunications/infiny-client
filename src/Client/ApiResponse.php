@@ -5,7 +5,7 @@
  * Time: 10:14
  */
 
-namespace Infiny\Client;
+namespace Client;
 
 
 class ApiResponse

@@ -5,7 +5,7 @@
  * Time: 09:29
  */
 
-namespace Infiny\Contracts;
+namespace Contracts;
 
 
 interface ApiResponse

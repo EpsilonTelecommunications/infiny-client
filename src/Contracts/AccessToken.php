@@ -5,7 +5,7 @@
  * Time: 09:35
  */
 
-namespace Infiny\Contracts;
+namespace Contracts;
 
 
 interface AccessToken
