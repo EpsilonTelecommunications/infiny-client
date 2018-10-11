@@ -17,7 +17,10 @@ class BaseResponse implements BaseResponseInterface
     public function __construct(ApiResponse $response)
     {
         foreach($response->getBody() as $key=>$value) {
-            print $value;
+            $studly = str_replace(" ", "", ucwords(str_replace(['-', '_'], ' ', $key)));
+            if(method_exists($this, 'set'.$studly)) {
+                $this->{'set'.$studly}($value);
+            }
         }
     }
 }
