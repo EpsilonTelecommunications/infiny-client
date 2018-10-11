@@ -16,6 +16,6 @@
         "psr-0": {
             "Infiny": "src/"
         }
-    }
+    },
     "minimum-stability": "dev"
 }
