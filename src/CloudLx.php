@@ -44,4 +44,13 @@ class CloudLx
             'service_type' => $serviceType
         ]);
     }
+
+    public function getServicePricing($portA, $portB, $protected = 0)
+    {
+        return $this->client->get('services/pricing', [
+            'port_id' => $portA,
+            'service_port_id' => $portB,
+            'protected' => $protected
+        ]);
+    }
 }
