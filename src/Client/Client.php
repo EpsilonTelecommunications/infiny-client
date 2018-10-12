@@ -53,7 +53,8 @@ class Client implements HttpClient
         'services/ports-available' => Ports::class,
         'services/pricing' => Products::class,
         'services/available-vlans' => Vlans::class,
-        'services/types' => ServiceTypes::class
+        'services/types' => ServiceTypes::class,
+        'ports/available' => Ports::class
     ];
 
     /**

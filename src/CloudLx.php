@@ -67,4 +67,13 @@ class CloudLx
     {
         return $this->client->get('services/types');
     }
+
+    public function getPurchasablePorts($datacentreId = null, $cityId = null, $continentId = null)
+    {
+        return $this->client->get('ports/available', [
+            'datacentre_id' => $datacentreId,
+            'city_id' => $cityId,
+            'continent_id' => $continentId
+        ])->getPorts();
+    }
 }
