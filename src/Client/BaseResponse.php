@@ -50,7 +50,11 @@ class BaseResponse implements BaseResponseInterface
                 $parameters = $reflectionMethod->getParameters();
                 if(count($parameters)) {
                     $parameterClass = $parameters[0]->getType();
-                    $class = $parameterClass->getName();
+                    if($parameterClass) {
+                        $class = $parameterClass->getName();
+                    } else {
+                        $class = false;
+                    }
                     foreach($value as $subKey=>$subValue) {
                         if($class) {
                             $parameterClass = new $class($subValue);
