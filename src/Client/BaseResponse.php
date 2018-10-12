@@ -11,7 +11,7 @@ namespace Infiny\Client;
 use Doctrine\Common\Inflector\Inflector;
 use Infiny\Contracts\BaseResponse as BaseResponseInterface;
 
-class BaseResponse implements BaseResponseInterface
+abstract class BaseResponse implements BaseResponseInterface
 {
     public function __construct($data)
     {
