@@ -51,7 +51,7 @@ class CloudLx
             'port_id' => $portA,
             'service_port_id' => $portB,
             'protected' => $protected
-        ]);
+        ])->getProducts();
     }
 
     public function getAvailableVlans($portA, $portB, $secondaryPort = null)
@@ -65,7 +65,7 @@ class CloudLx
 
     public function getServiceTypes()
     {
-        return $this->client->get('services/types');
+        return $this->client->get('services/types')->getServiceTypes();
     }
 
     public function getPurchasablePorts($datacentreId = null, $cityId = null, $continentId = null)
@@ -76,4 +76,11 @@ class CloudLx
             'continent_id' => $continentId
         ])->getPorts();
     }
+
+    public function getPorts()
+    {
+        return $this->client->get('ports')->getPorts();
+    }
+
+
 }
