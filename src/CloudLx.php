@@ -82,5 +82,9 @@ class CloudLx
         return $this->client->get('ports')->getPorts();
     }
 
+    public function getPort($portId)
+    {
+        return $this->client->get(sprintf('ports/{%d}/port', intval($portId)));
+    }
 
 }

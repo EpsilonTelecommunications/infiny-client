@@ -8,6 +8,7 @@
 namespace Infiny\Client;
 
 use GuzzleHttp\ClientInterface;
+use Infiny\Applications\Clx\Models\Port;
 use Infiny\Applications\Clx\Models\Ports;
 use Infiny\Applications\Clx\Models\Products;
 use Infiny\Applications\Clx\Models\Services;
@@ -55,7 +56,8 @@ class Client implements HttpClient
         'services/available-vlans' => Vlans::class,
         'services/types' => ServiceTypes::class,
         'ports/available' => Ports::class,
-        'ports' => Ports::class
+        'ports' => Ports::class,
+        'ports/{1}/port' => Port::class
     ];
 
     /**
