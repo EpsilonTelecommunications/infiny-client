@@ -34,4 +34,14 @@ class CloudLx
     {
         return $this->client->get(sprintf('services/{%d}/service', intval($serviceId)));
     }
+
+    public function getAvailablePorts($datacentreId = null, $cityId = null, $continentId = null, $serviceType = null)
+    {
+        return $this->client->get('services/ports-available', [
+            'datacentre_id' => $datacentreId,
+            'city_id' => $cityId,
+            'continent_id' => $continentId,
+            'service_type' => $serviceType
+        ]);
+    }
 }

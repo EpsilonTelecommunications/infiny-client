@@ -8,6 +8,7 @@
 namespace Infiny\Client;
 
 use GuzzleHttp\ClientInterface;
+use Infiny\Applications\Clx\Models\Ports;
 use Infiny\Applications\Clx\Models\Services;
 use Infiny\Applications\Clx\Models\Service;
 use Infiny\Authentication\AccessTokenRequest;
@@ -45,7 +46,8 @@ class Client implements HttpClient
     public $resourceMap = [
         'oauth2/access-token' => AccessToken::class,
         'services/{1}/service' => Service::class,
-        'services' => Services::class
+        'services' => Services::class,
+        'services/ports-available' => Ports::class
     ];
 
     /**
