@@ -12,7 +12,7 @@ use Infiny\Client\BaseResponse;
 
 class Service extends BaseResponse
 {
-    
+
     private $id;
     private $name;
     private $vlan;
@@ -27,6 +27,8 @@ class Service extends BaseResponse
     private $type_short_name;
     private $service_town;
     private $status;
+    private $port;
+    private $bPort;
 
     /**
      * @return mixed
@@ -277,6 +279,42 @@ class Service extends BaseResponse
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPort()
+    {
+        return $this->port;
+    }
+
+    /**
+     * @param mixed $port
+     * @return Service
+     */
+    public function setPort($port)
+    {
+        $this->port = $port;
+        return $this;
+    }
+
+    /**
+     * @return Port
+     */
+    public function getBPort(): Port
+    {
+        return $this->bPort;
+    }
+
+    /**
+     * @param mixed $bPort
+     * @return Service
+     */
+    public function setBPort(Port $bPort)
+    {
+        $this->bPort = $bPort;
         return $this;
     }
 }

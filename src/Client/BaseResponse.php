@@ -33,14 +33,33 @@ class BaseResponse implements BaseResponseInterface
                     }
                 }
             } elseif(method_exists($this, 'add'.$studly)) {
-                $reflectionClass = new \ReflectionClass(__CLASS__);
-                $parameters = $reflectionClass->getMethod('add'.$studly)->getParameters();
-                $parameterClass = $parameters[0]->getType();
-                $parameter = new $parameterClass($value);
-
-                $this->{'add'.$studly}($parameter);
+                if (is_array($value)) {
+                    $reflectionMethod = new \ReflectionMethod($this, 'add' . $studly);
+                    $parameters = $reflectionMethod->getParameters();
+                    if(count($parameters)) {
+                        $parameterClass = $parameters[0]->getType();
+                        $class = $parameterClass->getName();
+                        foreach($value as $subKey=>$subValue) {
+                            $parameterClass = new $class($subValue);
+                            $this->{'add' . $studly}($parameterClass);
+                        }
+                    }
+                }
             } elseif(method_exists($this, 'set'.$studly)) {
-                $this->{'set'.$studly}($value);
+                $reflectionMethod = new \ReflectionMethod($this, 'set' . $studly);
+                $parameters = $reflectionMethod->getParameters();
+                if(count($parameters)) {
+                    $parameterClass = $parameters[0]->getType();
+                    $class = $parameterClass->getName();
+                    foreach($value as $subKey=>$subValue) {
+                        if($class) {
+                            $parameterClass = new $class($subValue);
+                            $this->{'set' . $studly}($parameterClass);
+                        } else {
+                            $this->{'set'.$studly}($value);
+                        }
+                    }
+                }
             }
         }
     }
