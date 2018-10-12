@@ -53,4 +53,13 @@ class CloudLx
             'protected' => $protected
         ]);
     }
+
+    public function getAvailableVlans($portA, $portB, $secondaryPort)
+    {
+        return $this->client->get('services/available-vlans', [
+            'port_id' => $portA,
+            'service_port_id' => $portB,
+            'secondary_port_id' => $secondaryPort
+        ]);
+    }
 }

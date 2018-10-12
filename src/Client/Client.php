@@ -12,6 +12,7 @@ use Infiny\Applications\Clx\Models\Ports;
 use Infiny\Applications\Clx\Models\Products;
 use Infiny\Applications\Clx\Models\Services;
 use Infiny\Applications\Clx\Models\Service;
+use Infiny\Applications\Clx\Models\Vlans;
 use Infiny\Authentication\AccessTokenRequest;
 use Infiny\Contracts\HttpClient;
 use Infiny\Contracts\AccessToken as AccessTokenInterface;
@@ -49,7 +50,8 @@ class Client implements HttpClient
         'services/{1}/service' => Service::class,
         'services' => Services::class,
         'services/ports-available' => Ports::class,
-        'services/pricing' => Products::class
+        'services/pricing' => Products::class,
+        'services/available-vlans' => Vlans::class
     ];
 
     /**

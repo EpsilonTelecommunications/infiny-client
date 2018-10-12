@@ -30,6 +30,8 @@ abstract class BaseResponse implements BaseResponseInterface
                     $parameterClass = new $class($value);
                     $this->{'add' . $studlyClassSingular}($parameterClass);
                 }
+            } elseif (is_numeric($key) && method_exists($this, 'add'.$studlyClassSingular)) {
+                $this->{'add' . $studlyClassSingular}($value);
             } elseif (method_exists($this, 'add'.$studlySingular)) {
                 if (is_array($value)) {
                     $reflectionMethod = new \ReflectionMethod($this, 'add' . $studlySingular);
