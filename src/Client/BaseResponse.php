@@ -22,7 +22,7 @@ abstract class BaseResponse implements BaseResponseInterface
                 if (is_array($value)) {
                     $reflectionMethod = new \ReflectionMethod($this, 'add' . $studlySingular);
                     $parameters = $reflectionMethod->getParameters();
-                    if(count($parameters)) {
+                    if (count($parameters)) {
                         $parameterClass = $parameters[0]->getType();
                         $class = $parameterClass->getName();
                         foreach($value as $subKey=>$subValue) {
@@ -31,11 +31,11 @@ abstract class BaseResponse implements BaseResponseInterface
                         }
                     }
                 }
-            } elseif(method_exists($this, 'add'.$studly)) {
+            } elseif (method_exists($this, 'add'.$studly)) {
                 if (is_array($value)) {
                     $reflectionMethod = new \ReflectionMethod($this, 'add' . $studly);
                     $parameters = $reflectionMethod->getParameters();
-                    if(count($parameters)) {
+                    if (count($parameters)) {
                         $parameterClass = $parameters[0]->getType();
                         $class = $parameterClass->getName();
                         foreach($value as $subKey=>$subValue) {
@@ -44,12 +44,12 @@ abstract class BaseResponse implements BaseResponseInterface
                         }
                     }
                 }
-            } elseif(method_exists($this, 'set'.$studly)) {
+            } elseif (method_exists($this, 'set'.$studly)) {
                 $reflectionMethod = new \ReflectionMethod($this, 'set' . $studly);
                 $parameters = $reflectionMethod->getParameters();
-                if(count($parameters)) {
+                if (count($parameters)) {
                     $parameterClass = $parameters[0]->getType();
-                    if($parameterClass) {
+                    if ($parameterClass) {
                         $class = $parameterClass->getName();
                         $parameterClass = new $class($value);
                         $this->{'set' . $studly}($parameterClass);

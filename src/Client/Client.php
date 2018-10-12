@@ -151,7 +151,7 @@ class Client implements HttpClient
 
     public function createAccessToken()
     {
-        if($this->getClientId() && $this->getClientSecret()) {
+        if ($this->getClientId() && $this->getClientSecret()) {
 
             $accessTokenRequest = new AccessTokenRequest();
             $accessTokenRequest->setClientSecret($this->getClientSecret())
@@ -180,7 +180,7 @@ class Client implements HttpClient
                 return sprintf("{%d}", $i++);
             }, $resource);
         }
-        if(isset($this->resourceMap[$resource])) {
+        if (isset($this->resourceMap[$resource])) {
             return $this->resourceMap[$resource];
         }
         return null;
