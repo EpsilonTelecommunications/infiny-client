@@ -52,16 +52,10 @@ class BaseResponse implements BaseResponseInterface
                     $parameterClass = $parameters[0]->getType();
                     if($parameterClass) {
                         $class = $parameterClass->getName();
+                        $parameterClass = new $class($value);
+                        $this->{'set' . $studly}($parameterClass);
                     } else {
-                        $class = false;
-                    }
-                    foreach($value as $subKey=>$subValue) {
-                        if($class) {
-                            $parameterClass = new $class($subValue);
-                            $this->{'set' . $studly}($parameterClass);
-                        } else {
-                            $this->{'set'.$studly}($value);
-                        }
+                        $this->{'set'.$studly}($value);
                     }
                 }
             }
