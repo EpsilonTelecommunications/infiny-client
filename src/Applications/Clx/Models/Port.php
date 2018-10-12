@@ -8,7 +8,9 @@
 namespace Infiny\Applications\Clx\Models;
 
 
-class Port
+use Infiny\Client\BaseResponse;
+
+class Port extends BaseResponse
 {
     private $id;
     private $ref;

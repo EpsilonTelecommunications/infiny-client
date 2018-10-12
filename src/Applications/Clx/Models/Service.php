@@ -283,18 +283,18 @@ class Service extends BaseResponse
     }
 
     /**
-     * @return mixed
+     * @return Port
      */
-    public function getPort()
+    public function getPort(): Port
     {
         return $this->port;
     }
 
     /**
-     * @param mixed $port
+     * @param Port $port
      * @return Service
      */
-    public function setPort($port)
+    public function setPort(Port $port)
     {
         $this->port = $port;
         return $this;
@@ -309,7 +309,7 @@ class Service extends BaseResponse
     }
 
     /**
-     * @param mixed $bPort
+     * @param Port $bPort
      * @return Service
      */
     public function setBPort(Port $bPort)

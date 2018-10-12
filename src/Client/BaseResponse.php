@@ -16,7 +16,6 @@ class BaseResponse implements BaseResponseInterface
     public function __construct($data)
     {
         foreach($data as $key=>$value) {
-
             $studly = Inflector::classify($key);
             $studlySingular = Inflector::singularize($studly);
             if (method_exists($this, 'add'.$studlySingular)) {
