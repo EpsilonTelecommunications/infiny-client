@@ -16,6 +16,7 @@ class Port extends BaseResponse
     private $ref;
     private $name;
     private $datacentreName;
+    private $datacentre;
     private $index;
     private $speed;
     private $throughput;
@@ -118,6 +119,24 @@ class Port extends BaseResponse
     public function setDatacentreName($datacentreName)
     {
         $this->datacentreName = $datacentreName;
+        return $this;
+    }
+
+    /**
+     * @return Datacentre
+     */
+    public function getDatacentre(): Datacentre
+    {
+        return $this->datacentre;
+    }
+
+    /**
+     * @param Datacentre $datacentre
+     * @return Port
+     */
+    public function setDatacentre(Datacentre $datacentre)
+    {
+        $this->datacentre = $datacentre;
         return $this;
     }
 

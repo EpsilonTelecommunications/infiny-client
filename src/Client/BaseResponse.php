@@ -21,16 +21,14 @@ abstract class BaseResponse implements BaseResponseInterface
             $class = new \ReflectionClass($this);
             $studlyClass = Inflector::classify($class->getShortName());
             $studlyClassSingular = Inflector::singularize($studlyClass);
-            if (is_array($value) && is_numeric($key) && method_exists($this, 'add'.$studlyClassSingular)) {
+            if (is_object($value) && is_numeric($key) && method_exists($this, 'add'.$studlyClassSingular)) {
                 $reflectionMethod = new \ReflectionMethod($this, 'add' . $studlyClassSingular);
                 $parameters = $reflectionMethod->getParameters();
                 if (count($parameters)) {
                     $parameterClass = $parameters[0]->getType();
                     $class = $parameterClass->getName();
-                    foreach($value as $subKey=>$subValue) {
-                        $parameterClass = new $class($subValue);
-                        $this->{'add' . $studlyClassSingular}($parameterClass);
-                    }
+                    $parameterClass = new $class($value);
+                    $this->{'add' . $studlyClassSingular}($parameterClass);
                 }
             } elseif (method_exists($this, 'add'.$studlySingular)) {
                 if (is_array($value)) {
