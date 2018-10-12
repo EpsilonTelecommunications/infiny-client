@@ -28,6 +28,26 @@ class Port extends BaseResponse
     private $customer;
     private $customerId;
     private $odfPosition;
+    private $regions = [];
+    private $slot;
+    private $shelf;
+    private $shelfType;
+    private $networkAlarms = [];
+    private $services = [];
+    private $serviceType;
+    private $serviceCount;
+    private $singleUse;
+    private $offnetSupplierRef;
+    private $offnetSupplierRefDisplay;
+    private $offnetServiceRef;
+    private $offnetServiceRefDisplay;
+    private $serviceTown;
+    private $userCanAccess;
+    private $datacentreDatacentreName;
+    private $datacentreLogo;
+    private $datacentreCity;
+    private $datacentreCityIso;
+    private $status;
 
     /**
      * @return mixed
@@ -314,6 +334,396 @@ class Port extends BaseResponse
     public function setOdfPosition($odfPosition)
     {
         $this->odfPosition = $odfPosition;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRegions(): array
+    {
+        return $this->regions;
+    }
+
+    /**
+     * @param array $regions
+     * @return Port
+     */
+    public function setRegions(array $regions): Port
+    {
+        $this->regions = $regions;
+        return $this;
+    }
+
+    /**
+     * @param Region $region
+     * @return $this
+     */
+    public function addRegion(Region $region)
+    {
+        $this->regions[] = $region;
+        return $this;
+    }
+
+    /**
+     * @return Slot
+     */
+    public function getSlot(): Slot
+    {
+        return $this->slot;
+    }
+
+    /**
+     * @param Slot $slot
+     * @return Port
+     */
+    public function setSlot(Slot $slot)
+    {
+        $this->slot = $slot;
+        return $this;
+    }
+
+    /**
+     * @return Shelf
+     */
+    public function getShelf(): Shelf
+    {
+        return $this->shelf;
+    }
+
+    /**
+     * @param Shelf $shelf
+     * @return Port
+     */
+    public function setShelf(Shelf $shelf)
+    {
+        $this->shelf = $shelf;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getShelfType()
+    {
+        return $this->shelfType;
+    }
+
+    /**
+     * @param mixed $shelfType
+     * @return Port
+     */
+    public function setShelfType($shelfType)
+    {
+        $this->shelfType = $shelfType;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getNetworkAlarms(): array
+    {
+        return $this->networkAlarms;
+    }
+
+    /**
+     * @param array $networkAlarms
+     * @return Port
+     */
+    public function setNetworkAlarms(array $networkAlarms): Port
+    {
+        $this->networkAlarms = $networkAlarms;
+        return $this;
+    }
+
+    /**
+     * @param NetworkAlarm $networkAlarm
+     * @return $this
+     */
+    public function addNetworkAlarm(NetworkAlarm $networkAlarm)
+    {
+        $this->networkAlarms[] = $networkAlarm;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getServices(): array
+    {
+        return $this->services;
+    }
+
+    /**
+     * @param array $services
+     * @return Port
+     */
+    public function setServices(array $services): Port
+    {
+        $this->services = $services;
+        return $this;
+    }
+
+    /**
+     * @param Service $service
+     * @return $this
+     */
+    public function addService(Service $service)
+    {
+        $this->services[] = $service;
+        return $this;
+    }
+
+    /**
+     * @return ServiceType
+     */
+    public function getServiceType(): ServiceType
+    {
+        return $this->serviceType;
+    }
+
+    /**
+     * @param ServiceType $serviceType
+     * @return Port
+     */
+    public function setServiceType(ServiceType $serviceType)
+    {
+        $this->serviceType = $serviceType;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getServiceCount()
+    {
+        return $this->serviceCount;
+    }
+
+    /**
+     * @param mixed $serviceCount
+     * @return Port
+     */
+    public function setServiceCount($serviceCount)
+    {
+        $this->serviceCount = $serviceCount;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSingleUse()
+    {
+        return $this->singleUse;
+    }
+
+    /**
+     * @param mixed $singleUse
+     * @return Port
+     */
+    public function setSingleUse($singleUse)
+    {
+        $this->singleUse = $singleUse;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOffnetSupplierRef()
+    {
+        return $this->offnetSupplierRef;
+    }
+
+    /**
+     * @param mixed $offnetSupplierRef
+     * @return Port
+     */
+    public function setOffnetSupplierRef($offnetSupplierRef)
+    {
+        $this->offnetSupplierRef = $offnetSupplierRef;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOffnetSupplierRefDisplay()
+    {
+        return $this->offnetSupplierRefDisplay;
+    }
+
+    /**
+     * @param mixed $offnetSupplierRefDisplay
+     * @return Port
+     */
+    public function setOffnetSupplierRefDisplay($offnetSupplierRefDisplay)
+    {
+        $this->offnetSupplierRefDisplay = $offnetSupplierRefDisplay;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOffnetServiceRef()
+    {
+        return $this->offnetServiceRef;
+    }
+
+    /**
+     * @param mixed $offnetServiceRef
+     * @return Port
+     */
+    public function setOffnetServiceRef($offnetServiceRef)
+    {
+        $this->offnetServiceRef = $offnetServiceRef;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOffnetServiceRefDisplay()
+    {
+        return $this->offnetServiceRefDisplay;
+    }
+
+    /**
+     * @param mixed $offnetServiceRefDisplay
+     * @return Port
+     */
+    public function setOffnetServiceRefDisplay($offnetServiceRefDisplay)
+    {
+        $this->offnetServiceRefDisplay = $offnetServiceRefDisplay;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getServiceTown()
+    {
+        return $this->serviceTown;
+    }
+
+    /**
+     * @param mixed $serviceTown
+     * @return Port
+     */
+    public function setServiceTown($serviceTown)
+    {
+        $this->serviceTown = $serviceTown;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserCanAccess()
+    {
+        return $this->userCanAccess;
+    }
+
+    /**
+     * @param mixed $userCanAccess
+     * @return Port
+     */
+    public function setUserCanAccess($userCanAccess)
+    {
+        $this->userCanAccess = $userCanAccess;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatacentreDatacentreName()
+    {
+        return $this->datacentreDatacentreName;
+    }
+
+    /**
+     * @param mixed $datacentreDatacentreName
+     * @return Port
+     */
+    public function setDatacentreDatacentreName($datacentreDatacentreName)
+    {
+        $this->datacentreDatacentreName = $datacentreDatacentreName;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatacentreLogo()
+    {
+        return $this->datacentreLogo;
+    }
+
+    /**
+     * @param mixed $datacentreLogo
+     * @return Port
+     */
+    public function setDatacentreLogo($datacentreLogo)
+    {
+        $this->datacentreLogo = $datacentreLogo;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatacentreCity()
+    {
+        return $this->datacentreCity;
+    }
+
+    /**
+     * @param mixed $datacentreCity
+     * @return Port
+     */
+    public function setDatacentreCity($datacentreCity)
+    {
+        $this->datacentreCity = $datacentreCity;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatacentreCityIso()
+    {
+        return $this->datacentreCityIso;
+    }
+
+    /**
+     * @param mixed $datacentreCityIso
+     * @return Port
+     */
+    public function setDatacentreCityIso($datacentreCityIso)
+    {
+        $this->datacentreCityIso = $datacentreCityIso;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     * @return Port
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
         return $this;
     }
 }
