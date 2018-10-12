@@ -30,18 +30,22 @@ abstract class BaseResponse implements BaseResponseInterface
                     $parameterClass = new $class($value);
                     $this->{'add' . $studlyClassSingular}($parameterClass);
                 }
-            } elseif (is_numeric($key) && method_exists($this, 'add'.$studlyClassSingular)) {
-                $this->{'add' . $studlyClassSingular}($value);
             } elseif (method_exists($this, 'add'.$studlySingular)) {
                 if (is_array($value)) {
                     $reflectionMethod = new \ReflectionMethod($this, 'add' . $studlySingular);
                     $parameters = $reflectionMethod->getParameters();
                     if (count($parameters)) {
                         $parameterClass = $parameters[0]->getType();
-                        $class = $parameterClass->getName();
-                        foreach($value as $subKey=>$subValue) {
-                            $parameterClass = new $class($subValue);
-                            $this->{'add' . $studlySingular}($parameterClass);
+                        if($parameterClass) {
+                            $class = $parameterClass->getName();
+                            foreach ($value as $subKey => $subValue) {
+                                $parameterClass = new $class($subValue);
+                                $this->{'add' . $studlySingular}($parameterClass);
+                            }
+                        } else {
+                            foreach ($value as $subKey => $subValue) {
+                                $this->{'add' . $studlyClassSingular}($subValue);
+                            }
                         }
                     }
                 }

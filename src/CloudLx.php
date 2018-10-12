@@ -42,7 +42,7 @@ class CloudLx
             'city_id' => $cityId,
             'continent_id' => $continentId,
             'service_type' => $serviceType
-        ]);
+        ])->getPorts();
     }
 
     public function getServicePricing($portA, $portB, $protected = 0)
@@ -60,6 +60,11 @@ class CloudLx
             'port_id' => $portA,
             'service_port_id' => $portB,
             'secondary_port_id' => $secondaryPort
-        ]);
+        ])->getVlans();
+    }
+
+    public function getServiceTypes()
+    {
+        return $this->client->get('services/types');
     }
 }

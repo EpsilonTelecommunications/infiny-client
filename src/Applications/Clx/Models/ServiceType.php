@@ -15,9 +15,12 @@ class ServiceType extends BaseResponse
     private $id;
     private $name;
     private $shortName;
+    private $code;
+    private $title;
     private $logoPath;
     private $regions;
     private $category;
+    private $categories = [];
     private $categoryId;
 
     /**
@@ -143,6 +146,70 @@ class ServiceType extends BaseResponse
     public function setCategoryId($categoryId)
     {
         $this->categoryId = $categoryId;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param mixed $code
+     * @return ServiceType
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     * @return ServiceType
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCategories(): array
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param array $categories
+     * @return ServiceType
+     */
+    public function setCategories(array $categories): ServiceType
+    {
+        $this->categories = $categories;
+        return $this;
+    }
+
+    /**
+     * @param Category $category
+     * @return $this
+     */
+    public function addCategory(Category $category)
+    {
+        $this->categories[] = $category;
         return $this;
     }
 }
