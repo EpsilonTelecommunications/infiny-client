@@ -54,7 +54,7 @@ class CloudLx
         ]);
     }
 
-    public function getAvailableVlans($portA, $portB, $secondaryPort)
+    public function getAvailableVlans($portA, $portB, $secondaryPort = null)
     {
         return $this->client->get('services/available-vlans', [
             'port_id' => $portA,
