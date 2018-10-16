@@ -25,23 +25,73 @@ class Service extends BaseRequest
     private $translatedVlan;
     private $untaggedPortId;
     private $awsAccount;
-    private $masServiceKey;
-    private $secondaruPortId;
+    private $msaServiceKey;
+    private $secondaryPortId;
     private $gcpProjectId;
-    private $hostId;
+    private $hostIp;
     private $linkIp;
     private $asn;
     private $md5SessionKey;
     private $contactName;
     private $contactEmail;
     private $contactPhone;
+    private $disableAutoRenew = false;
+
+    private $serviceType;
 
     /**
      * @return mixed
      */
     public function getRequestData()
     {
-        // TODO: Implement getRequestData() method.
+        $request = [
+            'name' => $this->getName(),
+            'port_id' => $this->getPortId(),
+            'product-_id' => $this->getProductId(),
+            'disable_auto_renew' => $this->isDisableAutoRenew()
+        ];
+
+        switch($this->getServiceType()) {
+            case 'INT':
+                $request['far_end_port_id'] = $this->getFarEndPortId();
+                $request['cvlan_mapping_type'] = $this->getCvlanMappingType();
+                switch($this->getCvlanMappingType()) {
+                    case 'bundled':
+                        $request['cvlans'] = $this->getVlans();
+                    break;
+                    case 'range':
+                        $request['vlan_from'] = $this->getVlanFrom();
+                        $request['vlan_to'] = $this->getVlanTo();
+                    break;
+                    case 'translation':
+                        $request['vlan'] = $this->getVlan();
+                        $request['translated_vlan'] = $this->getTranslatedVlan();
+                    break;
+                    case 'virtual-untagged':
+                        $request['vlan'] = $this->getVlan();
+                        $request['untagged_port_id'] = $this->getUntaggedPortId();
+                    break;
+                }
+            break;
+            case 'AWS':
+                $request['aws_account'] = $this->getAwsAccount();
+            break;
+            case 'MSA':
+                $request['msa_service_key'] = $this->getMasServiceKey();
+                $request['secondary_port_id'] = $this->getSecondaruPortId();
+            break;
+            case 'GCP':
+                $request['gcp_project_id'] = $this->getGcpProjectId();
+                $request['host_ip'] = $this->getHostIp();
+                $request['link_ip'] = $this->getLinkIp();
+                $request['asn'] = $this->getAsn();
+                $request['md5_session_key'] = $this->getMd5SessionKey();
+                $request['contact_name'] = $this->getContactName();
+                $request['contact_email'] = $this->getContactEmail();
+                $request['contact_phone'] = $this->getContactPhone();
+        }
+
+        return $request;
     }
 
     /**
@@ -281,36 +331,36 @@ class Service extends BaseRequest
     /**
      * @return mixed
      */
-    public function getMasServiceKey()
+    public function getMsaServiceKey()
     {
-        return $this->masServiceKey;
+        return $this->msaServiceKey;
     }
 
     /**
-     * @param mixed $masServiceKey
+     * @param mixed $msaServiceKey
      * @return Service
      */
-    public function setMasServiceKey($masServiceKey)
+    public function setMsaServiceKey($msaServiceKey)
     {
-        $this->masServiceKey = $masServiceKey;
+        $this->msaServiceKey = $msaServiceKey;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getSecondaruPortId()
+    public function getSecondaryPortId()
     {
-        return $this->secondaruPortId;
+        return $this->secondaryPortId;
     }
 
     /**
-     * @param mixed $secondaruPortId
+     * @param mixed $secondaryPortId
      * @return Service
      */
-    public function setSecondaruPortId($secondaruPortId)
+    public function setSecondaryPortId($secondaryPortId)
     {
-        $this->secondaruPortId = $secondaruPortId;
+        $this->secondaryPortId = $secondaryPortId;
         return $this;
     }
 
@@ -335,18 +385,18 @@ class Service extends BaseRequest
     /**
      * @return mixed
      */
-    public function getHostId()
+    public function getHostIp()
     {
-        return $this->hostId;
+        return $this->hostIp;
     }
 
     /**
-     * @param mixed $hostId
+     * @param mixed $hostIp
      * @return Service
      */
-    public function setHostId($hostId)
+    public function setHostIp($hostIp)
     {
-        $this->hostId = $hostId;
+        $this->hostIp = $hostIp;
         return $this;
     }
 
@@ -455,6 +505,42 @@ class Service extends BaseRequest
     public function setContactPhone($contactPhone)
     {
         $this->contactPhone = $contactPhone;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getServiceType()
+    {
+        return $this->serviceType;
+    }
+
+    /**
+     * @param mixed $serviceType
+     * @return Service
+     */
+    public function setServiceType($serviceType)
+    {
+        $this->serviceType = $serviceType;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDisableAutoRenew(): bool
+    {
+        return $this->disableAutoRenew;
+    }
+
+    /**
+     * @param bool $disableAutoRenew
+     * @return Service
+     */
+    public function setDisableAutoRenew(bool $disableAutoRenew): Service
+    {
+        $this->disableAutoRenew = $disableAutoRenew;
         return $this;
     }
 }

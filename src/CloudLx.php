@@ -8,6 +8,7 @@
 namespace Infiny;
 
 use Infiny\Applications\Clx\Models\Service;
+use Infiny\Applications\Clx\Requests\Service as ServiceRequest;
 use Infiny\Applications\Clx\Requests\UpdateServiceRenewal;
 use Infiny\Client\Client as InfinyClient;
 
@@ -90,6 +91,131 @@ class CloudLx
     public function getServiceGraph($serviceId, $graphType)
     {
         return $this->client->get(sprintf('services/{%d}/graph/{%s}', $serviceId, $graphType));
+    }
+
+    public function createPortToPortVlanBundledService($name, $portId, $farEndPortId, $productId, array $vlans, $disableAutoRenew = false)
+    {
+        $service = new ServiceRequest();
+        $service->setName($name)
+            ->setPortId($portId)
+            ->setFarEndPortId($farEndPortId)
+            ->setProductId($productId)
+            ->setVlans($vlans)
+            ->setDisableAutoRenew($disableAutoRenew);
+
+        return $this->client->post('services/create', $service);
+    }
+
+    public function createPortToPortVlanRangeService($name, $portId, $farEndPortId, $productId, $vlanFrom, $vlanTo, $disableAutoRenew = false)
+    {
+        $service = new ServiceRequest();
+        $service->setName($name)
+            ->setPortId($portId)
+            ->setFarEndPortId($farEndPortId)
+            ->setProductId($productId)
+            ->setVlanFrom($vlanFrom)
+            ->setVlanTo($vlanTo)
+            ->setDisableAutoRenew($disableAutoRenew);
+
+        return $this->client->post('services/create', $service);
+    }
+
+    public function createPortToPortVlanTranslationService($name, $portId, $farEndPortId, $productId, $vlan, $translatedVlan, $disableAutoRenew = false)
+    {
+        $service = new ServiceRequest();
+        $service->setName($name)
+            ->setPortId($portId)
+            ->setFarEndPortId($farEndPortId)
+            ->setProductId($productId)
+            ->setVlan($vlan)
+            ->setTranslatedVlan($translatedVlan)
+            ->setDisableAutoRenew($disableAutoRenew);
+
+        return $this->client->post('services/create', $service);
+    }
+
+    public function createPortToPortVirtualUntaggedService($name, $portId, $farEndPortId, $productId, $vlan, $untaggedPortId, $disableAutoRenew = false)
+    {
+        $service = new ServiceRequest();
+        $service->setName($name)
+            ->setPortId($portId)
+            ->setFarEndPortId($farEndPortId)
+            ->setProductId($productId)
+            ->setVlan($vlan)
+            ->setUntaggedPortId($untaggedPortId)
+            ->setDisableAutoRenew($disableAutoRenew);
+
+        return $this->client->post('services/create', $service);
+    }
+
+    public function createAwsService($name, $portId, $servicePortId, $productId, $vlan, $awsAccount, $disableAutoRenew = false)
+    {
+        $service = new ServiceRequest();
+        $service->setName($name)
+            ->setPortId($portId)
+            ->setServicePortId($servicePortId)
+            ->setProductId($productId)
+            ->setVlan($vlan)
+            ->setAwsAccount($awsAccount)
+            ->setDisableAutoRenew($disableAutoRenew);
+
+        return $this->client->post('services/create', $service);
+    }
+
+    public function createAzureService($name,
+                                       $portId,
+                                       $servicePortId,
+                                       $productId,
+                                       $vlan,
+                                       $azureServiceKey,
+                                       $secondaryPortId,
+                                       $disableAutoRenew = false)
+    {
+        $service = new ServiceRequest();
+        $service->setName($name)
+            ->setPortId($portId)
+            ->setServicePortId($servicePortId)
+            ->setProductId($productId)
+            ->setVlan($vlan)
+            ->setMsaServiceKey($azureServiceKey)
+            ->setSecondaryPortId($secondaryPortId)
+            ->setDisableAutoRenew($disableAutoRenew);
+
+        return $this->client->post('services/create', $service);
+    }
+
+    public function createGoogleService($name,
+                                        $portId,
+                                        $servicePortId,
+                                        $productId,
+                                        $vlan,
+                                        $gcpProjectId,
+                                        $hostIp,
+                                        $linkIp,
+                                        $asn,
+                                        $md5SessionKey,
+                                        $contactName,
+                                        $contactEmail,
+                                        $contactPhone,
+                                        $disableAutoRenew = false)
+    {
+        $service = new ServiceRequest();
+        $service->setName($name)
+            ->setPortId($portId)
+            ->setServicePortId($servicePortId)
+            ->setProductId($productId)
+            ->setVlan($vlan)
+            ->setGcpProjectId($gcpProjectId)
+            ->setHostIp($hostIp)
+            ->setLinkIp($linkIp)
+            ->setAsn($asn)
+            ->setMd5SessionKey($md5SessionKey)
+            ->setContactName($contactName)
+            ->setContactEmail($contactEmail)
+            ->setContactPhone($contactPhone)
+            ->setDisableAutoRenew($disableAutoRenew);
+
+        return $this->client->post('services/create', $service);
     }
 
     public function getPorts()
