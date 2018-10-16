@@ -19,7 +19,7 @@ class Graph extends BaseResponse
      */
     public function getGraph()
     {
-        return $this->graph;
+        return base64_decode($this->graph);
     }
 
     /**

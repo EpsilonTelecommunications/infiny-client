@@ -89,7 +89,7 @@ class CloudLx
 
     public function getServiceGraph($serviceId, $graphType)
     {
-        return $this->client->get('services/{%d}/graph/{%s}', $serviceId, $graphType);
+        return $this->client->get(sprintf('services/{%d}/graph/{%s}', $serviceId, $graphType));
     }
 
     public function getPorts()

@@ -192,7 +192,7 @@ class Client implements HttpClient
     private function getModelFromResourceMap($resource)
     {
         if (preg_match("/\{.+\}/", $resource)) {
-            $resource = preg_replace_callback('/\{.*\}/', function($matches) {
+            $resource = preg_replace_callback('/\{.+?\}/', function($matches) {
                 static $i=1;
                 return sprintf("{%d}", $i++);
             }, $resource);
