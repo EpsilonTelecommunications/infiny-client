@@ -87,6 +87,11 @@ class CloudLx
         ])->getPorts();
     }
 
+    public function getServiceGraph($serviceId, $graphType)
+    {
+        return $this->client->get('services/{%d}/graph/{%s}', $serviceId, $graphType);
+    }
+
     public function getPorts()
     {
         return $this->client->get('ports')->getPorts();
