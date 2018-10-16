@@ -21,7 +21,7 @@ use Infiny\Contracts\AccessToken as AccessTokenInterface;
 use Infiny\Contracts\BaseResponse as BaseResponseInterface;
 use Infiny\Authentication\AccessToken;
 use Infiny\Exceptions\MissingCredentialsException;
-use Infiny\Infiny\Success;
+use Infiny\Applications\Infiny\Success;
 use Psr\Http\Message\ResponseInterface;
 
 class Client implements HttpClient

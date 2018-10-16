@@ -5,7 +5,7 @@
  * Time: 09:59
  */
 
-namespace Infiny\Infiny;
+namespace Infiny\Applications\Infiny;
 
 
 use Infiny\Client\BaseResponse;
