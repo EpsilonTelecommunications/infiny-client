@@ -75,7 +75,7 @@ class CloudLx
         $updateServiceRenewalRequest->setEnableAutoRenewal($enableAutoRenewal)
             ->setRenewalProductId($renewalProductId);
 
-        return $this->client->put(sprintf('services/{%d}/service/renew', $serviceId));
+        return $this->client->put(sprintf('services/{%d}/service/renew', $serviceId), $updateServiceRenewalRequest);
     }
 
     public function getPurchasablePorts($datacentreId = null, $cityId = null, $continentId = null)
