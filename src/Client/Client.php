@@ -21,6 +21,7 @@ use Infiny\Contracts\AccessToken as AccessTokenInterface;
 use Infiny\Contracts\BaseResponse as BaseResponseInterface;
 use Infiny\Authentication\AccessToken;
 use Infiny\Exceptions\MissingCredentialsException;
+use Infiny\Infiny\Success;
 use Psr\Http\Message\ResponseInterface;
 
 class Client implements HttpClient
@@ -50,6 +51,7 @@ class Client implements HttpClient
     public $resourceMap = [
         'oauth2/access-token' => AccessToken::class,
         'services/{1}/service' => Service::class,
+        'services/{1}/service/renew' => Success::class,
         'services' => Services::class,
         'services/ports-available' => Ports::class,
         'services/pricing' => Products::class,
@@ -78,17 +80,17 @@ class Client implements HttpClient
 
     /**
      * @param $resource
-     * @param null $data
+     * @param BaseRequest|null $data
      * @param array $requestParams
      * @return BaseResponseInterface
      */
-    public function post($resource, $data = null, $requestParams = []): BaseResponseInterface
+    public function post($resource, BaseRequest $data = null, $requestParams = []): BaseResponseInterface
     {
         return $this->parseResponse(
             $this->getClient()->request('post', $this->getEndpoint($resource), [
                 'headers' => $this->getHeaders(),
                 'query' => $requestParams,
-                'body' => $data
+                'body' => json_encode($data)
             ]),
             $this->getModelFromResourceMap($resource)
         );
@@ -96,17 +98,17 @@ class Client implements HttpClient
 
     /**
      * @param $resource
-     * @param null $data
+     * @param BaseRequest|null $data
      * @param array $requestParams
      * @return BaseResponseInterface
      */
-    public function put($resource, $data = null, $requestParams = []): BaseResponseInterface
+    public function put($resource, BaseRequest $data = null, $requestParams = []): BaseResponseInterface
     {
         return $this->parseResponse(
             $this->getClient()->request('put', $this->getEndpoint($resource), [
                 'headers' => $this->getHeaders(),
                 'query' => $requestParams,
-                'body' => $data
+                'body' => json_encode($data)
             ]),
             $this->getModelFromResourceMap($resource)
         );

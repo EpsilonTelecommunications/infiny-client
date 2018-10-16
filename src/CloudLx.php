@@ -8,6 +8,7 @@
 namespace Infiny;
 
 use Infiny\Applications\Clx\Models\Service;
+use Infiny\Applications\Requests\UpdateServiceRenewal;
 use Infiny\Client\Client as InfinyClient;
 
 
@@ -66,6 +67,15 @@ class CloudLx
     public function getServiceTypes()
     {
         return $this->client->get('services/types')->getServiceTypes();
+    }
+
+    public function updateServiceRenewal($serviceId, $renewalProductId = null, $enableAutoRenewal = true)
+    {
+        $updateServiceRenewalRequest = new UpdateServiceRenewal();
+        $updateServiceRenewalRequest->setEnableAutoRenewal($enableAutoRenewal)
+            ->setRenewalProductId($renewalProductId);
+
+        return $this->client->put(sprintf('services/{%d}/service/renew', $serviceId));
     }
 
     public function getPurchasablePorts($datacentreId = null, $cityId = null, $continentId = null)
