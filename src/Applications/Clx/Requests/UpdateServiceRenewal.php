@@ -5,7 +5,7 @@
  * Time: 09:37
  */
 
-namespace Infiny\Applications\Requests;
+namespace Infiny\Applications\Clx\Requests;
 
 
 use Infiny\Client\BaseRequest;

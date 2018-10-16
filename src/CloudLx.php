@@ -8,7 +8,7 @@
 namespace Infiny;
 
 use Infiny\Applications\Clx\Models\Service;
-use Infiny\Applications\Requests\UpdateServiceRenewal;
+use Infiny\Applications\Clx\Requests\UpdateServiceRenewal;
 use Infiny\Client\Client as InfinyClient;
 
 
