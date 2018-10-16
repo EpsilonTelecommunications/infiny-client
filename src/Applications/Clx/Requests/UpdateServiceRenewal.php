@@ -56,9 +56,10 @@ class UpdateServiceRenewal extends BaseRequest
      */
     public function getRequestData()
     {
-        return [
-            'disable_auto_renew' => !$this->isEnableAutoRenewal(),
-            'renewal_product_id' => $this->getRenewalProductId()
-        ];
+        $request['disable_auto_renew'] = !$this->isEnableAutoRenewal();
+        if($this->getRenewalProductId()) {
+            $request['renewal_product_id'] = $this->getRenewalProductId();
+        }
+        return $request;
     }
 }

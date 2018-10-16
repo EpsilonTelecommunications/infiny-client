@@ -154,7 +154,8 @@ class Client implements HttpClient
     {
         return [
             'Authorization' => sprintf('Bearer %s', $this->getAccessToken()->getAccessToken()),
-            'Accept' => $this->getAcceptHeader()
+            'Accept' => $this->getAcceptHeader(),
+            'Content-Type' => 'application/json'
         ];
     }
 
