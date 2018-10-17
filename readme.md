@@ -3,7 +3,7 @@
 A PHP SKD for intergration with the Infiny API. ([http://infiny.cloud](http://infiny.cloud)) by Epsilon Telecommunications Limited ([http://www.epsilontel.com](http://www.epsilontel.com)) 
 
 ## Quick Start
-```phpg
+```php
 <?php
 
 require_once "vendor/autoload.php";
