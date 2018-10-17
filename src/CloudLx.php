@@ -96,7 +96,8 @@ class CloudLx
     public function createPortToPortVlanBundledService($name, $portId, $farEndPortId, $productId, array $vlans, $disableAutoRenew = false)
     {
         $service = new ServiceRequest();
-        $service->setName($name)
+        $service->setServiceType('INT')
+            ->setName($name)
             ->setPortId($portId)
             ->setFarEndPortId($farEndPortId)
             ->setProductId($productId)
@@ -109,7 +110,8 @@ class CloudLx
     public function createPortToPortVlanRangeService($name, $portId, $farEndPortId, $productId, $vlanFrom, $vlanTo, $disableAutoRenew = false)
     {
         $service = new ServiceRequest();
-        $service->setName($name)
+        $service->setServiceType('INT')
+            ->setName($name)
             ->setPortId($portId)
             ->setFarEndPortId($farEndPortId)
             ->setProductId($productId)
@@ -123,7 +125,8 @@ class CloudLx
     public function createPortToPortVlanTranslationService($name, $portId, $farEndPortId, $productId, $vlan, $translatedVlan, $disableAutoRenew = false)
     {
         $service = new ServiceRequest();
-        $service->setName($name)
+        $service->setServiceType('INT')
+            ->setName($name)
             ->setPortId($portId)
             ->setFarEndPortId($farEndPortId)
             ->setProductId($productId)
@@ -137,7 +140,8 @@ class CloudLx
     public function createPortToPortVirtualUntaggedService($name, $portId, $farEndPortId, $productId, $vlan, $untaggedPortId, $disableAutoRenew = false)
     {
         $service = new ServiceRequest();
-        $service->setName($name)
+        $service->setServiceType('INT')
+            ->setName($name)
             ->setPortId($portId)
             ->setFarEndPortId($farEndPortId)
             ->setProductId($productId)
@@ -151,7 +155,8 @@ class CloudLx
     public function createAwsService($name, $portId, $servicePortId, $productId, $vlan, $awsAccount, $disableAutoRenew = false)
     {
         $service = new ServiceRequest();
-        $service->setName($name)
+        $service->setServiceType('AWS')
+            ->setName($name)
             ->setPortId($portId)
             ->setServicePortId($servicePortId)
             ->setProductId($productId)
@@ -172,7 +177,8 @@ class CloudLx
                                        $disableAutoRenew = false)
     {
         $service = new ServiceRequest();
-        $service->setName($name)
+        $service->setServiceType('MSA')
+            ->setName($name)
             ->setPortId($portId)
             ->setServicePortId($servicePortId)
             ->setProductId($productId)
@@ -200,7 +206,8 @@ class CloudLx
                                         $disableAutoRenew = false)
     {
         $service = new ServiceRequest();
-        $service->setName($name)
+        $service->setServiceType('GCP')
+            ->setName($name)
             ->setPortId($portId)
             ->setServicePortId($servicePortId)
             ->setProductId($productId)
