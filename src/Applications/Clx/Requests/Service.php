@@ -75,10 +75,12 @@ class Service extends BaseRequest
             break;
             case 'AWS':
                 $request['aws_account'] = $this->getAwsAccount();
+                $request['vlan'] = $this->getVlan();
             break;
             case 'MSA':
-                $request['msa_service_key'] = $this->getMasServiceKey();
-                $request['secondary_port_id'] = $this->getSecondaruPortId();
+                $request['msa_service_key'] = $this->getMsaServiceKey();
+                $request['secondary_port_id'] = $this->getSecondaryPortId();
+                $request['vlan'] = $this->getVlan();
             break;
             case 'GCP':
                 $request['gcp_project_id'] = $this->getGcpProjectId();
@@ -89,6 +91,7 @@ class Service extends BaseRequest
                 $request['contact_name'] = $this->getContactName();
                 $request['contact_email'] = $this->getContactEmail();
                 $request['contact_phone'] = $this->getContactPhone();
+                $request['vlan'] = $this->getVlan();
         }
 
         return $request;
