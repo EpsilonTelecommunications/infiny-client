@@ -47,7 +47,7 @@ class Service extends BaseRequest
         $request = [
             'name' => $this->getName(),
             'port_id' => $this->getPortId(),
-            'product-_id' => $this->getProductId(),
+            'product_id' => $this->getProductId(),
             'disable_auto_renew' => $this->isDisableAutoRenew()
         ];
 
