@@ -17,6 +17,5 @@
         "psr-4": {
             "Infiny\\": "src/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
