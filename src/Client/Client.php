@@ -55,7 +55,7 @@ class Client implements HttpClient
         'services/{1}/service' => Service::class,
         'services/{1}/service/renew' => Success::class,
         'services' => Services::class,
-        '/services/create' => ServiceCreated::class,
+        'services/create' => ServiceCreated::class,
         'services/ports-available' => Ports::class,
         'services/pricing' => Products::class,
         'services/available-vlans' => Vlans::class,
