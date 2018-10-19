@@ -25,7 +25,7 @@ $ composer require epsilontelecommunications/infiny-client
 ```json
 {
     "require": {
-        "epsilontelecommunications/infiny-client": "^1.0"
+        "epsilontelecommunications/infiny-client": "^1.0.1"
     }
 }
 ```
