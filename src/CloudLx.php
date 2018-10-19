@@ -7,19 +7,21 @@
 
 namespace Infiny;
 
+use GuzzleHttp\ClientInterface;
 use Infiny\Applications\Clx\Models\Service;
 use Infiny\Applications\Clx\Requests\Service as ServiceRequest;
 use Infiny\Applications\Clx\Requests\UpdateServiceRenewal;
 use Infiny\Client\Client as InfinyClient;
+use Infiny\Contracts\AccessToken;
 
 
 class CloudLx
 {
     private $client;
 
-    public function __construct($clientId, $clientSecret)
+    public function __construct($clientId, $clientSecret, AccessToken $accessToken = null, ClientInterface $client = null)
     {
-        $this->client = new InfinyClient();
+        $this->client = new InfinyClient($accessToken, $client);
         $this->client->setClientId($clientId)
             ->setClientSecret($clientSecret);
     }
@@ -235,4 +237,21 @@ class CloudLx
         return $this->client->get(sprintf('ports/{%d}/port', intval($portId)));
     }
 
+    /**
+     * @return InfinyClient
+     */
+    public function getClient(): InfinyClient
+    {
+        return $this->client;
+    }
+
+    /**
+     * @param InfinyClient $client
+     * @return CloudLx
+     */
+    public function setClient(InfinyClient $client): CloudLx
+    {
+        $this->client = $client;
+        return $this;
+    }
 }

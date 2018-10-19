@@ -1,0 +1,270 @@
+{
+  "id": 1234,
+  "name": "Test Service",
+  "vlan": 20,
+  "nni_vlan": null,
+  "created": "2018-07-31 11:11:25",
+  "expires": "2019-07-31 11:11:21",
+  "protected": "Protected",
+  "bandwidth": "2Mbps",
+  "paused": false,
+  "expired": false,
+  "type": "Inter-port Connection",
+  "type_short_name": "INT",
+  "service_town": "",
+  "status": "in service",
+  "port": {
+    "id": 512,
+    "ref": "clxp-4XaHVRxR",
+    "name": "Test Port",
+    "datacentre_name": "EPUK-EGH4-B72-1 1/3/G13",
+    "index": 13,
+    "speed": "1Gbit",
+    "throughput": 1000000,
+    "committed_bandwidth": "6Mb/sec",
+    "committed_bandwidth_raw": 6000,
+    "remaining_bandwidth": "994Mb/sec",
+    "remaining_bandwidth_raw": 994000,
+    "utilisation": "0.6%",
+    "utilisation_raw": "0.6",
+    "customer": "Epsilon Telecom",
+    "customer_id": 1,
+    "odf_position": "ODF 1 Block C Ports 5/0",
+    "regions": [
+      {
+        "name": "London"
+      },
+      {
+        "name": "United Kingdom"
+      },
+      {
+        "name": "Europe"
+      },
+      {
+        "name": "Metro Europe"
+      }
+    ],
+    "switch": {
+      "index": 1
+    },
+    "slot": {
+      "index": 3
+    },
+    "shelf": {
+      "index": 1,
+      "name": "EPUK-EGH4-B72-1"
+    },
+    "shelf_type": "PVX",
+    "network_alarms": [
+      {
+        "description": "Link down.",
+        "created_at": "2018-07-06T09:52:17+00:00"
+      },
+      {
+        "description": "Link down.",
+        "created_at": "2018-07-06T09:49:56+00:00"
+      },
+      {
+        "description": "Link down.",
+        "created_at": "2018-06-18T14:42:41+00:00"
+      },
+      {
+        "description": "Link down.",
+        "created_at": "2018-06-07T11:26:00+00:00"
+      },
+      {
+        "description": "Link down.",
+        "created_at": "2018-06-07T11:25:52+00:00"
+      },
+      {
+        "description": "Link down.",
+        "created_at": "2018-06-07T10:17:00+00:00"
+      },
+      {
+        "description": "Link down.",
+        "created_at": "2018-06-07T09:51:20+00:00"
+      },
+      {
+        "description": "Link down.",
+        "created_at": "2018-06-07T09:51:12+00:00"
+      },
+      {
+        "description": "Link down.",
+        "created_at": "2018-06-07T09:13:07+00:00"
+      },
+      {
+        "description": "Link down.",
+        "created_at": "2018-06-07T08:25:34+00:00"
+      }
+    ],
+    "services": [
+      {
+        "id": 1644,
+        "name": "TestCommunityPorts"
+      },
+      {
+        "id": 1645,
+        "name": "communityPortTest"
+      }
+    ],
+    "service_type": {
+      "id": 20,
+      "name": "Inter-port Connection",
+      "short_name": "INT",
+      "logo_path": null,
+      "regions": "",
+      "category": "INT",
+      "category_id": 3
+    },
+    "service_count": 3,
+    "single_use": 0,
+    "offnet_supplier_ref": "",
+    "offnet_supplier_ref_display": null,
+    "offnet_service_ref": "",
+    "offnet_service_ref_display": null,
+    "service_town": null,
+    "user_can_access": false,
+    "datacentre_datacentre_name": "Epsilon Global Hubs London",
+    "datacentre_logo": "",
+    "datacentre_city": "London",
+    "datacentre_city_iso": "GB",
+    "status": "in service"
+  },
+  "b_port": {
+    "id": 2065,
+    "ref": "clxp-0UzFCo24",
+    "name": "London - Epsilon Global Hubs London - P12 (10Gbit)",
+    "datacentre_name": "EPUK-EGH1-B72-11 1/3/X1",
+    "index": 1,
+    "speed": "10Gbit",
+    "throughput": 10000000,
+    "committed_bandwidth": "2Mb/sec",
+    "committed_bandwidth_raw": 2000,
+    "remaining_bandwidth": "9,998Mb/sec",
+    "remaining_bandwidth_raw": 9998000,
+    "utilisation": "0.02%",
+    "utilisation_raw": "0.02",
+    "customer": "Test Customer",
+    "customer_id": 106,
+    "odf_position": "",
+    "regions": [
+      {
+        "name": "London"
+      },
+      {
+        "name": "United Kingdom"
+      },
+      {
+        "name": "Europe"
+      },
+      {
+        "name": "Metro Europe"
+      }
+    ],
+    "switch": {
+      "index": 1
+    },
+    "slot": {
+      "index": 3
+    },
+    "shelf": {
+      "index": 1,
+      "name": "EPUK-EGH1-B72-11"
+    },
+    "shelf_type": "PVX",
+    "network_alarms": [
+      {
+        "description": "XFP missing.",
+        "created_at": "2018-06-29T18:48:04+00:00"
+      },
+      {
+        "description": "XFP missing.",
+        "created_at": "2018-06-29T17:34:06+00:00"
+      },
+      {
+        "description": "XFP missing.",
+        "created_at": "2018-06-07T08:42:06+00:00"
+      },
+      {
+        "description": "XFP missing.",
+        "created_at": "2018-06-07T08:39:25+00:00"
+      }
+    ],
+    "services": [
+      {
+        "id": 1644,
+        "name": "TestCommunityPorts"
+      }
+    ],
+    "service_type": {
+      "id": 20,
+      "name": "Inter-port Connection",
+      "short_name": "INT",
+      "logo_path": null,
+      "regions": "",
+      "category": "INT",
+      "category_id": 3
+    },
+    "service_count": 1,
+    "single_use": 0,
+    "offnet_supplier_ref": null,
+    "offnet_supplier_ref_display": false,
+    "offnet_service_ref": null,
+    "offnet_service_ref_display": false,
+    "service_town": null,
+    "user_can_access": true,
+    "datacentre_datacentre_name": "Epsilon Global Hubs London",
+    "datacentre_logo": "",
+    "datacentre_city": "London",
+    "datacentre_city_iso": "GB",
+    "status": "pending cabling",
+    "statistics": []
+  },
+  "csp_status": {
+    "color": "danger",
+    "text": "Not Found",
+    "state": "down"
+  },
+  "statistics": {
+    "ne_fl": {
+      "name": "NE FL",
+      "lastvalue": "0 %",
+      "lastvalue_raw": 0
+    },
+    "fe_fl": {
+      "name": "FE FL",
+      "lastvalue": "0 %",
+      "lastvalue_raw": 0
+    },
+    "jitter": {
+      "name": "Jitter",
+      "lastvalue": "0 us",
+      "lastvalue_raw": 0
+    },
+    "2_way_latency": {
+      "name": "2 way latency",
+      "lastvalue": "0.03 ms",
+      "lastvalue_raw": 25
+    },
+    "discards": {
+      "name": "Discards",
+      "lastvalue": "0 /s",
+      "lastvalue_raw": 0
+    },
+    "conform": {
+      "name": "Conform",
+      "lastvalue": "0 /s",
+      "lastvalue_raw": 0
+    },
+    "discards_service": {
+      "name": "Discards",
+      "lastvalue": "0 /s",
+      "lastvalue_raw": 0
+    },
+    "conform_service": {
+      "name": "Conform",
+      "lastvalue": "0 /s",
+      "lastvalue_raw": 0
+    }
+  }
+}

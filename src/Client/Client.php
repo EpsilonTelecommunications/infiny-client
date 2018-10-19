@@ -39,7 +39,7 @@ class Client implements HttpClient
 
     public function __construct(AccessTokenInterface $accessToken = null, ClientInterface $client = null)
     {
-        if ($accessToken) {
+        if($accessToken) {
             $this->setAccessToken($accessToken);
         }
 

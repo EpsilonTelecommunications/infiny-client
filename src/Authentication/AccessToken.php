@@ -14,6 +14,10 @@ use Infiny\Contracts\AccessToken as AccessTokenInterface;
 class AccessToken extends BaseResponse implements AccessTokenInterface
 {
     private $accessToken;
+    private $refreshToken;
+    private $tokenType;
+    private $expiresIn;
+
 
     /**
      * @return string
@@ -30,6 +34,60 @@ class AccessToken extends BaseResponse implements AccessTokenInterface
     public function setAccessToken($accessToken): AccessToken
     {
         $this->accessToken = $accessToken;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRefreshToken()
+    {
+        return $this->refreshToken;
+    }
+
+    /**
+     * @param mixed $refreshToken
+     * @return AccessToken
+     */
+    public function setRefreshToken($refreshToken)
+    {
+        $this->refreshToken = $refreshToken;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTokenType()
+    {
+        return $this->tokenType;
+    }
+
+    /**
+     * @param mixed $tokenType
+     * @return AccessToken
+     */
+    public function setTokenType($tokenType)
+    {
+        $this->tokenType = $tokenType;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExpiresIn()
+    {
+        return $this->expiresIn;
+    }
+
+    /**
+     * @param mixed $expiresIn
+     * @return AccessToken
+     */
+    public function setExpiresIn($expiresIn)
+    {
+        $this->expiresIn = $expiresIn;
         return $this;
     }
 }
